@@ -26,6 +26,7 @@ function App() {
       resume,url,about);
   }
 
+  
   return (
       <div className="App">
           <h1>Form in React</h1>
