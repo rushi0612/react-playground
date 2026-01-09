@@ -8,7 +8,7 @@ function App() {
   const [email, setEmail]=useState("");
   const [contact, setContact]=useState("");
   const [gender, setGender]=useState("");
-  const [subjects, setSubject]=useState({
+  const [subjects, setSubjects]=useState({
       english: true, 
       maths: false,
       physics: false,
@@ -26,7 +26,31 @@ function App() {
       resume,url,about);
   }
 
-  
+  const  handleSubjectChange =(sub)=>{
+   setSubjects((prev)=>({
+      ...prev,
+      [sub]: !prev[sub],
+   }))
+  }
+
+   const handleReset = () => {
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setContact("");
+      setGender("");
+      setSubjects({
+         english: true,
+         maths: false,
+         physics: false,
+      });
+         setResume("");
+         setUrl("");
+         setSelectedOption("");
+         setAbout("");
+
+   }
+
   return (
       <div className="App">
           <h1>Form in React</h1>
