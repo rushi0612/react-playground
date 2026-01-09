@@ -18,6 +18,14 @@ function App() {
   const [selectedOption, setSelectedOption]=useState("");
   const [about, setAbout] = useState("");
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+
+     console.log( firstName,lastName,email,
+      contact,gender,selectedOption,subjects,
+      resume,url,about);
+  }
+
   return (
       <div className="App">
           <h1>Form in React</h1>
