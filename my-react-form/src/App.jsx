@@ -13,7 +13,7 @@ function App() {
       maths: false,
       physics: false,
   });
-  const [resume, srtResume]=useState("");
+  const [resume, setResume]=useState("");
   const [url, setUrl]=useState("");
   const [selectedOption, setSelectedOption]=useState("");
   const [about, setAbout] = useState("");
@@ -55,8 +55,59 @@ function App() {
               <input type="radio" name="gender" value="other" id="other" 
                  checked={gender === "other"}  
                  onChange={(e) => setGender(e.target.value)} />Other 
-              
 
+               <label for="lang">Your best Subject</label>
+               <input type="checkbox" name="lang" id="english" 
+               checked={subjects.english === true}
+               onChange={(e) => handleSubjectChange("english") }
+               />English
+
+               <input type="checkbox" name="lang" id="math" 
+               checked={subjects.english === true}
+               onChange={(e) => handleSubjectChange("math") }
+               />Math
+
+               <input type="checkbox" name="lang" id="physics" 
+               checked={subjects.english === true}
+               onChange={(e) => handleSubjectChange("physics") }
+               />Physics
+
+               <label for="file">Upload Resume*</label>
+               <input type="file" name="file" id="file" 
+               onChange={(e)=>setResume(e.target.files[0])}
+               placeholder="Enter Upload File" required
+               />
+
+               <label for="url">Enter URL*</label>
+               <input type="url" name="url" id="url" onChange={(e)=>setUrl(e.target.value)}
+               placeholder="Enter url" required
+               />
+
+               <label>Select your choice</label>
+               <select name="select" id="select" 
+               value={selectedOption} onChange={(e)=>setSelectedOption(e.target.value)} >
+                  <option value="" disabled  selected={selectedOption === ""}> Select your Ans</option>
+                    
+                     <optgroup label="Beginers"> 
+                        <option value="1">HTML</option>
+                            <option value="2">CSS</option>
+                            <option value="3">JavaScript </option>
+                     </optgroup>
+                    
+                     <optgroup label="Advance"> 
+                        <option value="4">React</option>
+                            <option value="5">Node</option>
+                            <option value="6">Express </option>
+                     </optgroup>
+               </select>
+
+               <label for="about">About</label>
+               <textarea name="about" id="about"  cols="30" rows="10"    
+               onChange={(e)=>setAbout(e.target.value)} placeholder="About your self" required>                  
+               </textarea>
+               <button type="rest" value="rest" onChange={(e)=>handleSubmit(e)}>
+                  submit
+               </button>
             </form>
           </fieldset>
     </div>
