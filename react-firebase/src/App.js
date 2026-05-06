@@ -1,5 +1,5 @@
-import React from 'react'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import React, { use, useEffect, useState } from 'react'
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import app from './firebase';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
@@ -7,17 +7,33 @@ import SignIn from './pages/SignIn';
 const auth = getAuth(app);
 
 const App = () => {
+  const [user, setUser] = useState(null);
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user)=>{
+      if(user){
+        setUser(user)
+      }else{
+        console.log("You are logged out")
+        setUser(null)
+      }
+    })
+  },[]);
 
-  const signupUser = () => {
-    createUserWithEmailAndPassword(auth, "rushi@gmail.com", "rushi123").then(value=>console.log(value))
+
+  if(user=== null){
+    return(
+      <div className="App">
+        <SignUp />
+        <SignIn />
+      </div>
+    )
   }
 
   return (
-    <div>
-      <SignUp />
-      <SignIn />
+    <div className="App">
+      <h1>Hello {user.email}</h1>
+      <button onClick={()=>signOut(auth)}>Logout</button>
     </div>
-    
   )
 }
 
